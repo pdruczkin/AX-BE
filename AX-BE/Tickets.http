@@ -1,0 +1,26 @@
+### Create a new ticket
+POST http://localhost:5089/tickets
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Sample Ticket",
+  "description": "This is a test ticket",
+  "status": "Open"
+}
+
+### Update ticket status
+PUT http://localhost:5089/tickets/2/status
+Content-Type: application/json
+
+"InProgress"
+
+### Get ticket by ID
+GET http://localhost:5089/tickets/2
+Accept: application/json
+
+### Get all tickets (no filter)
+GET http://localhost:5089/tickets
+
+### Get all tickets filtered by status Open
+GET http://localhost:5089/tickets?status=Open
