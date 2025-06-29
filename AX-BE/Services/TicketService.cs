@@ -32,14 +32,14 @@ public class TicketService : ITicketService
         return Result<int>.Success(ticket.Id);
     }
 
-    public Result<bool> UpdateStatus(int id, Status status)
+    public Result<bool> UpdateStatus(int id, UpdateTicketDto updateTicketDto)
     {
         var ticket = Tickets.FirstOrDefault(t => t.Id == id);
 
         if (ticket is null)
             return Result<bool>.Failure(TicketErrors.TicketNotFound);
         
-        ticket.Status = status;
+        ticket.Status = updateTicketDto.Status;
         return Result<bool>.Success(true);
     }
 

@@ -88,7 +88,12 @@ public class TicketServiceTests
 
         var addResult = _service.AddTicket(createDto);
 
-        var updateResult = _service.UpdateStatus(addResult.Data, Status.Resolved);
+        var updateDto = new UpdateTicketDto
+        {
+            Status = Status.Resolved
+        };
+        
+        var updateResult = _service.UpdateStatus(addResult.Data, updateDto);
 
         Assert.True(updateResult.IsSuccess);
 
@@ -100,7 +105,12 @@ public class TicketServiceTests
     [Fact]
     public void UpdateStatus_WhenTicketDoesNotExist_ShouldFail()
     {
-        var updateResult = _service.UpdateStatus(999, Status.Resolved);
+        var updateDto = new UpdateTicketDto
+        {
+            Status = Status.Resolved
+        };
+        
+        var updateResult = _service.UpdateStatus(999, updateDto);
 
         Assert.False(updateResult.IsSuccess);
         Assert.Equal(TicketErrors.TicketNotFound, updateResult.Error);

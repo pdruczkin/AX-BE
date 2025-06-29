@@ -29,9 +29,9 @@ public class TicketsController
     }
     
     [HttpPut("{id:int}/status")]
-    public IResult UpdateTicketStatus(int id, [FromBody] Status status)
+    public IResult UpdateTicketStatus(int id, [FromBody] UpdateTicketDto updateTicketDto)
     {
-        var result = _ticketService.UpdateStatus(id, status);
+        var result = _ticketService.UpdateStatus(id, updateTicketDto);
 
         return result.IsSuccess switch
         {
